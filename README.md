@@ -1,12 +1,10 @@
 # odin-mastermind-game
 The Odin Project's Mastermind Game project
-
 Let's plan and outline first before writing code. How does this structure look: 
 
 SecretCode Class
 - purpose: 
--- responsible for creating a code to break
-- constants: CODE_LENGTH = 6, CODE_VALUES = %w[red yellow orange green blue purple]
+-- responsible for creating a code to break and storing it
 - instance variable
 -- code (array)
 - instance methods: 
@@ -14,56 +12,65 @@ SecretCode Class
 -- generate_code: randomly creates the code to break
 
 Game class
-- purpose: manages game logic, play again logic
-- constants: NUMBER_OF_ROUNDS = 12
+- purpose: controls game logic (active)
 - instance variables:
--- game_over?
+-- code
+-- gamestate
+-- board
+-- player
+-- interface
 - instance methods: 
 -- initialize variables
--- game loop
-1. create objects
---- instantiate new Board object
---- instantiate 2 new Player objects (guessor and creator)
---- get Code class to create a new secret code
---- get History class to create guesses and hints history
-2. run game logic
+1. game loop: run game logic
+-- welcome
+2. play 1 turn 
 --- prompt the Interface class for guesser to enter a guess 
 --- get the Board class to validate and provide feedback
 --- get History class to track if code isn't correct
 --- get Interface class to provide feedback and display board
-3. check for game over conditions
+2. check for game over conditions
 --- while loop checking the Board's state for gameover?
---- get Interface to declare game over if the guesses didn't get the code and the rounds are finished or if the guesses correctly guessed
-4. replay
+--- get Interface to declare game, gets info from Board state if gameover
+3. replay
 --- repeat rounds until game over
 -- ask to play another round 
 
-Board class (tracks board state)
-- purpose: validates guesses, provides feedback
+GameState class
+- purposes: tracks the state of the game
+- instance variables
+-- current_round
+-- current_guess
+-- game_over? conditions
+-- winner?
 - instance methods:
--- initialize variables
+-- updates game_over?, winner? flag
+
+Board class (tracks board state)
+- purpose: owns the game rules & mechanics
+-- validates guesses, provides feedback, tracks the guess history and the hints history
+- instance variables: 
+-- guesses_history (array)
+-- hints_history (array)
+-- current_round
+- instance methods:
+-- initialize 
+-- provides feedback on guess
 -- validates the guess against the code in the Code class
+-- tracks history of guesses, hints
 -- checks for gameover conditions
+-- correct guess?
 
 Player class
+- purpose: manages players 
 - instance variables:
 -- name
 -- position as guesser or creator of code 
 - instance methods: 
 -- initialize variables
 
-History class
-- purposes: tracks the guess history, tracks the hints history
-- instance variables: 
--- guesses (hash)
--- hints (hash)
-- instance methods:
--- initialize 
--- tracks history of guesses
-
 Interface class
+- purpose: handles user IO (validate user inputs, prints messages to players, manages colors)
 - library: colorize
-- purpose: validate user inputs, prints messages to players, manages colors
 - instance variables
 - instance methods: 
 -- gets guesser's inputs
@@ -72,6 +79,15 @@ Interface class
 -- display guess
 -- display history of guess after every turn
 -- display hints 
+
+Configurations class
+- purpose: stores the game settings 
+- class variables:
+--- code_length = 6
+--- code_values = %w[red yellow orange green blue purple]
+--- number_of_rounds = 12
+- class methods:
+-- declare variables above
 
  main.rb
 - instantiate new Game object
