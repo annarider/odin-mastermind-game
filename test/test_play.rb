@@ -10,7 +10,9 @@ module TestPlay
   def self.create_game
     code = TestSetup.generate_code
     board = Board.new(code)
-    p board
+    p "board: #{board}"
+    p "check code guess: #{board.check_guess(code)}"
+    p "check random guess: #{board.check_guess(code.shuffle)}"
   end
 end
 

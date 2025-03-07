@@ -17,5 +17,7 @@ class Board
     @current_guess = guess
   end
 
-  
+  def check_guess(code)
+    code == current_guess
+  end
 end
