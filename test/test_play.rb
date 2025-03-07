@@ -11,8 +11,8 @@ module TestPlay
     code = TestSetup.generate_code
     board = Board.new(code)
     p "board: #{board}"
-    p "check code guess: #{board.check_guess(code)}"
-    p "check random guess: #{board.check_guess(code.shuffle)}"
+    p "check code guess: #{board.correct?(code)}"
+    p "check random guess: #{board.correct?(code.shuffle)}"
   end
 end
 
