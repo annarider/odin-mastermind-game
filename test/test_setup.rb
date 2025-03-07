@@ -6,10 +6,21 @@
 require_relative '../lib/configuration'
 require_relative '../lib/secret_code'
 
-p "CODE_LENGTH: #{Configuration::CODE_LENGTH}"
-p "CODE_VALUES: #{Configuration::CODE_VALUES}"
-p "NUMBER_OF_ROUNDS: #{Configuration::NUMBER_OF_ROUNDS}"
+module TestSetup
+  def self.print_configuration
+    p "CODE_LENGTH: #{Configuration::CODE_LENGTH}"
+    p "CODE_VALUES: #{Configuration::CODE_VALUES}"
+    p "NUMBER_OF_ROUNDS: #{Configuration::NUMBER_OF_ROUNDS}"
+  end
 
-code = SecretCode.generate
-p "code: #{code}"
-code
+  def self.generate_code
+    code = SecretCode.generate
+    p "secret code: #{code}"
+    code
+  end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  TestSetup.print_configuration
+  TestSetup.generate_code
+end

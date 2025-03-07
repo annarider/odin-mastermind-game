@@ -6,7 +6,14 @@
 require_relative 'test_setup'
 require_relative '../lib/board'
 
+module TestPlay
+  def self.create_game
+    code = TestSetup.generate_code
+    board = Board.new(code)
+    p board
+  end
+end
 
-board = Board.new
-
-p board(code)
+if __FILE__ == $PROGRAM_NAME
+  TestPlay.create_game
+end
