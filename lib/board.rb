@@ -20,4 +20,10 @@ class Board
   def correct?(code)
     code == current_guess
   end
+
+  private
+
+  def history
+    guess_history << current_guess
+  end
 end
