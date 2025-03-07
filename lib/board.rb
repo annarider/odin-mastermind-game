@@ -21,9 +21,27 @@ class Board
     code == current_guess
   end
 
-  private
-
   def history
     guess_history << current_guess
+  end
+
+  def feedback(code)
+    exact_match = 0
+    color_match = 0
+
+    matches = []
+
+    code.each_with_index do |color, index|
+      if current_guess[index] == color
+        matches[index] = color
+        exact_match += 1
+      else 
+        matches[index] = nil
+      end
+    end
+
+    p "exact_match: #{exact_match}"
+    p "color_match: #{color_match}"
+    p "matches: #{matches}"
   end
 end
