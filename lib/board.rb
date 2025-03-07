@@ -16,4 +16,6 @@ class Board
     @hint_history = []
     @current_guess = guess
   end
+
+  
 end

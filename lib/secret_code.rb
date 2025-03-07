@@ -6,9 +6,8 @@
 #   code = SecretCode.new
 class SecretCode
   require_relative 'configuration'
-  attr_accessor :code
 
-  def initialize
-    @code = Configuration::CODE_VALUES.shuffle
+  def self.generate
+    Configuration::CODE_VALUES.shuffle
   end
 end
