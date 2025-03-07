@@ -26,22 +26,24 @@ class Board
   end
 
   def feedback(code)
-    exact_match = 0
-    color_match = 0
+    exact_matches = find_exact_match(code)
+    color_matches = find_color_match(code, exact_matches)
+    [exact_matches, color_matches]
+  end
 
+  def find_exact_match(code)
     matches = []
-
     code.each_with_index do |color, index|
-      if current_guess[index] == color
+    if current_guess[index] == color
         matches[index] = color
-        exact_match += 1
       else 
         matches[index] = nil
       end
     end
+    matches
+  end
 
-    p "exact_match: #{exact_match}"
-    p "color_match: #{color_match}"
-    p "matches: #{matches}"
+  def find_color_match(code, exact_matches)
+    nil
   end
 end

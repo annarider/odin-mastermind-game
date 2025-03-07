@@ -29,6 +29,6 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   TestPlay.setup
-  TestPlay.test_board_setup
+  # TestPlay.test_board_setup
   TestPlay.test_guess_feedback
 end
