@@ -28,16 +28,18 @@ class Board
   def feedback(code)
     exact_matches = find_exact_match(code)
     color_matches = find_color_match(code, exact_matches)
-    [exact_matches, color_matches]
+    p code
+    p current_guess
+    p exact_matches
+    p color_matches
+    [exact_matches.size, color_matches.size]
   end
 
   def find_exact_match(code)
     matches = []
     code.each_with_index do |color, index|
     if current_guess[index] == color
-        matches[index] = color
-      else 
-        matches[index] = nil
+        matches << current_guess[index]
       end
     end
     matches
@@ -47,9 +49,11 @@ class Board
     remainder_code = code - exact_matches
     remainder_guess = current_guess - exact_matches
     matches = []
-    remainder_guess.each_with_index do |color, index|
-      remainder_code.include?(remainder_guess[index])
-        matches << remainder_guess[index]
+    remainder_guess.each do |color|
+      if remainder_code.include?(color)
+        matches << color
+        remainder_code.delete_at(remainder_code.index(color) || remainder_code.length)
+      end
     end
     matches
   end
