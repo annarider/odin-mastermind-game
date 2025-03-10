@@ -9,21 +9,23 @@ require_relative '../lib/board'
 module TestPlay
   @@code = nil
   @@board = nil
+  @@guess = nil
 
   def self.setup
     @@code = TestSetup.generate_code
     @@board = Board.new(@@code)
+    @@guess = TestSetup.generate_code
   end
 
   def self.test_board_setup
     p "board: #{@@board}"
     p "check code guess: #{@@board.correct?(@@code)}"
-    p "check random guess: #{@@board.correct?(@@code.shuffle)}"
+    p "check random guess: #{@@board.correct?(@@guess)}"
   end
   
   def self.test_guess_feedback
     p "feedback: #{@@board.feedback(@@code)}"
-    p "feedback: #{@@board.feedback(@@code.shuffle)}"
+    p "feedback: #{@@board.feedback(@@guess)}"
   end
 end
 
