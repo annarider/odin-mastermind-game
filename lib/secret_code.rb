@@ -8,6 +8,6 @@ class SecretCode
   require_relative 'configuration'
 
   def self.generate
-    Configuration::CODE_VALUES.shuffle
+    Configuration::CODE_LENGTH.times.map { Configuration::CODE_VALUES.sample }
   end
 end
