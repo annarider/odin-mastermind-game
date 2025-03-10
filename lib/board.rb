@@ -44,6 +44,13 @@ class Board
   end
 
   def find_color_match(code, exact_matches)
-    nil
+    remainder_code = code - exact_matches
+    remainder_guess = current_guess - exact_matches
+    matches = []
+    remainder_guess.each_with_index do |color, index|
+      remainder_code.include?(remainder_guess[index])
+        matches << remainder_guess[index]
+    end
+    matches
   end
 end
