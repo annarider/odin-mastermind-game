@@ -18,7 +18,7 @@ class Board
     @current_guess = guess
   end
 
-  def correct?(code)
+  def win?(code)
     code == current_guess
   end
 
@@ -60,6 +60,6 @@ class Board
   end
 
   def game_over?(code)
-    correct?(code) || guess_history.size == Configuration::NUMBER_OF_ROUNDS
+    win?(code) || guess_history.size == Configuration::NUMBER_OF_ROUNDS
   end
 end

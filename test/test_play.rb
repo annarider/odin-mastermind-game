@@ -19,13 +19,14 @@ module TestPlay
 
   def self.test_board_setup
     p "board: #{@@board}"
-    p "check code guess: #{@@board.correct?(@@code)}"
-    p "check random guess: #{@@board.correct?(@@guess)}"
+    p "check code guess: #{@@board.win?(@@code)}"
+    p "check random guess: #{@@board.win?(@@guess)}"
   end
   
   def self.test_guess_feedback
     p "feedback: #{@@board.feedback(@@code)}"
     p "feedback: #{@@board.feedback(@@guess)}"
+    p "gameover? #{@@board.game_over?(@@code)}"
     p "gameover? #{@@board.game_over?(@@code)}"
     p "gameover? #{@@board.game_over?(@@guess)}"
   end
