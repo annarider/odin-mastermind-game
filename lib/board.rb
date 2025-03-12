@@ -10,19 +10,20 @@
 #   board = Board.new
 class Board
   require_relative 'configuration'
-  attr_accessor :guess_history, :hint_history, :current_guess
+  attr_accessor :code, :guess_history, :hint_history, :current_guess
 
-  def initialize(guess)
+  def initialize(code, guess)
     @guess_history = []
     @hint_history = []
     @current_guess = guess
+    @code = code
   end
 
-  def game_over?(code)
-    win?(code) || guess_history.size == Configuration::NUMBER_OF_ROUNDS
+  def game_over?
+    win? || guess_history.size == Configuration::NUMBER_OF_ROUNDS
   end
 
-  def win?(code)
+  def win?
     code == current_guess
   end
 
@@ -30,9 +31,9 @@ class Board
     guess_history << current_guess
   end
 
-  def feedback(code)
-    exact_matches = find_exact_match(code)
-    color_matches = find_color_match(code, exact_matches)
+  def feedback
+    exact_matches = find_exact_match
+    color_matches = find_color_match(exact_matches)
     p code
     p current_guess
     p exact_matches
@@ -41,8 +42,8 @@ class Board
   end
 
   private 
-  
-  def find_exact_match(code)
+
+  def find_exact_match
     matches = []
     code.each_with_index do |color, index|
     if current_guess[index] == color
@@ -52,7 +53,7 @@ class Board
     matches
   end
 
-  def find_color_match(code, exact_matches)
+  def find_color_match(exact_matches)
     remainder_code = code - exact_matches
     remainder_guess = current_guess - exact_matches
     matches = []
