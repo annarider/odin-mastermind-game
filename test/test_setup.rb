@@ -15,7 +15,6 @@ module TestSetup
 
   def self.generate_code
     code = SecretCode.generate
-    p "secret code: #{code}"
     code
   end
 end
