@@ -26,6 +26,8 @@ module TestPlay
   def self.test_guess_feedback
     p "feedback: #{@@board.feedback(@@code)}"
     p "feedback: #{@@board.feedback(@@guess)}"
+    p "gameover? #{@@board.game_over?(@@code)}"
+    p "gameover? #{@@board.game_over?(@@guess)}"
   end
 end
 

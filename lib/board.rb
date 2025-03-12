@@ -9,6 +9,7 @@
 # @example Creating a new board
 #   board = Board.new
 class Board
+  require_relative 'configuration'
   attr_accessor :guess_history, :hint_history, :current_guess
 
   def initialize(guess)
@@ -56,5 +57,9 @@ class Board
       end
     end
     matches
+  end
+
+  def game_over?(code)
+    correct?(code) || guess_history.size == Configuration::NUMBER_OF_ROUNDS
   end
 end
