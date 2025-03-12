@@ -18,6 +18,10 @@ class Board
     @current_guess = guess
   end
 
+  def game_over?(code)
+    win?(code) || guess_history.size == Configuration::NUMBER_OF_ROUNDS
+  end
+
   def win?(code)
     code == current_guess
   end
@@ -36,6 +40,8 @@ class Board
     [exact_matches.size, color_matches.size]
   end
 
+  private 
+  
   def find_exact_match(code)
     matches = []
     code.each_with_index do |color, index|
@@ -57,9 +63,5 @@ class Board
       end
     end
     matches
-  end
-
-  def game_over?(code)
-    win?(code) || guess_history.size == Configuration::NUMBER_OF_ROUNDS
   end
 end
