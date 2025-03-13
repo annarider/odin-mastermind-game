@@ -42,6 +42,11 @@ class Interface
     get_guess
   end
 
+  def get_name
+    puts "Let's start. What's your name?"
+    gets.chomp.strip
+  end
+
   def valid?(guess)
     return false if guess.size != Configuration::CODE_LENGTH
     guess.all? { |color| Configuration::CODE_VALUES.include?(color)}
