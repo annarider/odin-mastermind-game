@@ -31,7 +31,11 @@ class Interface
       represent blue, yellow, red, orange:
       BYRO. 
     GUESS
-    guess = gets.chomp.upcase.delete(' ')
+    gets.chomp.upcase.delete(' ').chars
   end
 
+  def valid?(guess)
+    return false if guess.size != Configuration::CODE_LENGTH
+    guess.all? { |color| Configuration::CODE_VALUES.include?(color)}
+  end
 end
