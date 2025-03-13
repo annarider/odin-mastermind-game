@@ -41,7 +41,7 @@ class Game
   def play_round
     loop do
       play_turn
-      board.show_board
+      interface.show_board
       break if state.game_over?
 
     end
