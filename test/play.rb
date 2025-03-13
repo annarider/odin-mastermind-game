@@ -5,6 +5,7 @@
 # It doesn't manage game setup.
 require_relative 'setup'
 require_relative '../lib/board'
+require_relative '../lib/interface'
 
 module TestPlay
   @@code = nil
@@ -40,6 +41,14 @@ module TestPlay
     p "history: #{@@board.history}"
     p "hint: #{@@board.hint}"
   end
+
+  def self.test_interface
+    interface = Interface.new
+    interface.welcome
+    guess = interface.request_guess
+    p guess
+    p interface.valid?(guess)
+  end
 end
 
 if __FILE__ == $PROGRAM_NAME
@@ -47,5 +56,6 @@ if __FILE__ == $PROGRAM_NAME
   # TestPlay.test_board_setup
   # TestPlay.test_guess_feedback
   # TestPlay.test_gameover
-  TestPlay.test_board_history
+  # TestPlay.test_board_history
+  TestPlay.test_interface
 end
