@@ -18,7 +18,7 @@ class Board
     @current_guess = guess
     @code = code
   end
-
+ 
   def game_over?
     win? || guess_history.size == Configuration::NUMBER_OF_ROUNDS
   end
@@ -31,13 +31,13 @@ class Board
     guess_history << current_guess
   end
 
+  def hint
+    hint_history << feedback
+  end 
+
   def feedback
     exact_matches = find_exact_match
     color_matches = find_color_match(exact_matches)
-    p code
-    p current_guess
-    p exact_matches
-    p color_matches
     [exact_matches.size, color_matches.size]
   end
 
