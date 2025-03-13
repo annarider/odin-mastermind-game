@@ -53,7 +53,8 @@ class Game
     until interface.valid?(guess)
       interface.guess_again
     end
-    board.
+    board.track_guess
+    state.update_round(guess)
   end
 
   def announce_end

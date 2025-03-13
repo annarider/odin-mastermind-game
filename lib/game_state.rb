@@ -25,11 +25,8 @@ class GameState
     board.win?
   end
 
-  def update_guess(guess)
+  def update_round(guess)
     @current_guess = guess
-  end
-
-  def update_round
     @current_round += 1
   end
 end
