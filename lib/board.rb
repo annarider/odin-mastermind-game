@@ -27,6 +27,13 @@ class Board
     code == current_guess
   end
 
+  def track_guess
+    history
+    hint
+  end 
+  
+  private
+
   def history
     guess_history << current_guess
   end
@@ -34,9 +41,7 @@ class Board
   def hint
     hint_history << feedback
   end 
-
-  private
-
+  
   def feedback
     exact_matches = find_exact_match
     color_matches = find_color_match(exact_matches)

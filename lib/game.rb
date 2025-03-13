@@ -49,12 +49,11 @@ class Game
   end
 
   def play_turn
-    position = current_player.choose
-    until board.valid_move?(position)
-      current_player.choose_again
-      position = current_player.choose
+    guess = interface.get_guess
+    until interface.valid?(guess)
+      interface.guess_again
     end
-    board.set_symbol(position, current_player.symbol)
+    board.
   end
 
   def announce_end
