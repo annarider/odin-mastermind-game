@@ -21,5 +21,17 @@ class Interface
       a history of your guesses and hints to help you. 
     WELCOME
   end
-  
+   
+  def request_guess
+    puts <<~GUESS
+      What's your guess?
+      Guess a combination of #{Configuration::CODE_LENGTH} colors. 
+      Valid colors are #{Configuration::CODE_VALUES.join('')}. 
+      You will enter your guess in a format like this to 
+      represent blue, yellow, red, orange:
+      BYRO. 
+    GUESS
+    guess = gets.chomp.upcase.delete(' ')
+  end
+
 end
