@@ -42,7 +42,7 @@ class Game
     loop do
       play_turn
       interface.show_board
-      break if state.game_over?
+      break if state.check_game_over
 
     end
     announce_end
@@ -58,9 +58,9 @@ class Game
   end
 
   def announce_end
-    if state.winner?
+    if state.check_winner
       interface.announce_win
-    elsif state.game_over?
+    elsif state.check_game_over
       interface.announce_lose
     end
   end

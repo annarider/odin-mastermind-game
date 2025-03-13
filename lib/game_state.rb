@@ -8,21 +8,21 @@
 #   state = GameState.new
 class GameState
   require_relative 'configuration'
-  attr_accessor :current_round, :current_guess, :game_over?, :winner?
+  attr_accessor :current_round, :current_guess, :game_over, :winner
 
   def initialize(guess)
     @current_round = 1
     @current_guess = guess
-    @game_over? = false
+    @game_over = false
     @winner = false
   end
 
-  def game_over?(board)
-    board.game_over?
+  def check_game_over(board)
+    @game_over = board.game_over?
   end
 
-  def winner?(board)
-    board.win?
+  def check_winner(board)
+    @winner = board.win?
   end
 
   def update_round(guess)
