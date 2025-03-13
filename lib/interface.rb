@@ -9,6 +9,7 @@
 #   interface = Interface.new
 class Interface
   require_relative 'configuration'
+  require_relative 'secret_code'
 
   def welcome
     puts <<~WELCOME 
@@ -21,21 +22,37 @@ class Interface
       a history of your guesses and hints to help you. 
     WELCOME
   end
-   
-  def request_guess
-    puts <<~GUESS
-      What's your guess?
-      Guess a combination of #{Configuration::CODE_LENGTH} colors. 
-      Valid colors are #{Configuration::CODE_VALUES.join('')}. 
-      You will enter your guess in a format like this to 
-      represent blue, yellow, red, orange:
-      BYRO. 
-    GUESS
+
+  def guess
+    puts <<~REQUEST
+    What's your guess?
+    Guess a combination of #{Configuration::CODE_LENGTH} colors. 
+    Valid colors are #{Configuration::CODE_VALUES.join('')}. 
+    You will enter your guess in a format like this: #{SecretCode.generate}. 
+    REQUEST
+    get_guess
+  end
+  
+  def guess_again
+    puts <<~REQUEST
+    Invalid guess. Guess a combination of #{Configuration::CODE_LENGTH} colors. 
+    Valid colors are #{Configuration::CODE_VALUES.join('')}. 
+    An example guess is #{SecretCode.generate.join('')}. Guess again. 
+    REQUEST
+    get_guess
+  end
+
+  def get_guess
     gets.chomp.upcase.delete(' ').chars
   end
 
   def valid?(guess)
     return false if guess.size != Configuration::CODE_LENGTH
     guess.all? { |color| Configuration::CODE_VALUES.include?(color)}
+  end
+
+  def show_board(board)
+    puts board.history
+    puts board.hint
   end
 end

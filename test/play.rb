@@ -45,9 +45,10 @@ module TestPlay
   def self.test_interface
     interface = Interface.new
     interface.welcome
-    guess = interface.request_guess
+    guess = interface.get_guess
     p guess
     p interface.valid?(guess)
+    guess = interface.guess_again
   end
 end
 
