@@ -51,7 +51,7 @@ Board class (tracks board state)
 - instance variables: 
 -- guesses_history (array)
 -- hints_history (array)
--- current_round
+-- current_guess
 - instance methods:
 -- initialize 
 -- provides feedback on guess
