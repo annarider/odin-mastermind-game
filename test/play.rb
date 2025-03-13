@@ -30,7 +30,9 @@ module TestPlay
   end
   
   def self.test_gameover
+    @@board.current_guess = @@code ## have Game class call to set guess
     p "gameover with code? #{@@board.game_over?}, #{@@code}"
+    @@board.current_guess = @@guess
     p "gameover with guess? #{@@board.game_over?}, #{@@guess}}"
   end
   
