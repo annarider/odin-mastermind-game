@@ -38,6 +38,7 @@ module TestPlay
   
   def self.test_board_history
     p "history: #{@@board.history}"
+    p "hint: #{@@board.hint}"
   end
 end
 
@@ -45,6 +46,6 @@ if __FILE__ == $PROGRAM_NAME
   TestPlay.setup
   # TestPlay.test_board_setup
   # TestPlay.test_guess_feedback
-  TestPlay.test_gameover
+  # TestPlay.test_gameover
   TestPlay.test_board_history
 end
