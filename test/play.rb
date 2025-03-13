@@ -48,7 +48,7 @@ module TestPlay
     guess = interface.get_guess
     p guess
     p interface.valid?(guess)
-    guess = interface.guess_again
+    interface.show_board(@@board)
   end
 end
 

@@ -42,17 +42,31 @@ class Interface
     get_guess
   end
 
-  def get_guess
-    gets.chomp.upcase.delete(' ').chars
-  end
-
   def valid?(guess)
     return false if guess.size != Configuration::CODE_LENGTH
     guess.all? { |color| Configuration::CODE_VALUES.include?(color)}
   end
-
+  
   def show_board(board)
-    puts board.history
-    puts board.hint
+    puts show_history(board), show_hint(board), show_round(board)
+  end
+  
+  def get_guess
+    gets.chomp.upcase.delete(' ').chars
+  end
+  
+  private
+  
+  def show_history(board)
+    board.history.each { |guess| guess.join('')}
+  end
+  
+  def show_hint(board)
+    board.hint.join(', ')
+  end
+
+  def show_round(board)
+    current_round = board.guess_history.size
+    "Guess #{current_round} out of #{Configuration::NUMBER_OF_ROUNDS} guesses."
   end
 end
