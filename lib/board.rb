@@ -35,13 +35,13 @@ class Board
     hint_history << feedback
   end 
 
+  private
+
   def feedback
     exact_matches = find_exact_match
     color_matches = find_color_match(exact_matches)
     [exact_matches.size, color_matches.size]
   end
-
-  private 
 
   def find_exact_match
     matches = []
