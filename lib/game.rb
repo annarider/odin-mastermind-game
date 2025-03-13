@@ -71,8 +71,6 @@ class Game
   end
 
   def reset
-    @board = GameBoard.new
-    @current_player = play_order
-    puts "Let's play again. It's #{current_player.name}'s turn."
+    @board = Board.new
   end
 end
