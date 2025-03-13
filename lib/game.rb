@@ -3,6 +3,8 @@
 # Game represents the game controller.
 # It controls the game logic and delegates
 # actions to different classes.
+# It is active whereas its counterpart,
+# the GameState class, is passive.
 #
 # @example Creating a new game
 #   game = Game.new

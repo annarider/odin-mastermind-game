@@ -66,7 +66,7 @@ class Interface
   end
 
   def show_round(board)
-    current_round = board.guess_history.size
+    current_round = board.guess_history.size #TODO state is GameState's job
     "Guess #{current_round} out of #{Configuration::NUMBER_OF_ROUNDS} guesses."
   end
 end
