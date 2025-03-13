@@ -13,7 +13,7 @@ class GameState
   def initialize(guess)
     @current_round = 1
     @current_guess = guess
-    @game_over = false
+    @game_over? = false
     @winner = false
   end
 
