@@ -59,6 +59,14 @@ class Interface
   def get_guess
     gets.chomp.upcase.delete(' ').chars
   end
+
+  def announce_win
+    puts "Game over. The winner was #{current_player.name}."
+  end
+
+  def announce_lose
+    puts 'Game over. Sorry you ran out of guesses.'
+  end
   
   private
   

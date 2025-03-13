@@ -42,9 +42,8 @@ class Game
     loop do
       play_turn
       board.show_board
-      break if board.game_over?
+      break if state.game_over?
 
-      @current_player = reverse_turn
     end
     announce_end
   end
@@ -58,15 +57,11 @@ class Game
     board.set_symbol(position, current_player.symbol)
   end
 
-  def reverse_turn
-    current_player == player1 ? player2 : player1
-  end
-
   def announce_end
-    if board.winner?
-      puts "Game over. The winner was #{current_player.name}."
-    elsif board.full?
-      puts 'Game over. No winner.'
+    if state.winner?
+      interface.announce_win
+    elsif state.game_over?
+      interface.announce_lose
     end
   end
 
