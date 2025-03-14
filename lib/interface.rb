@@ -61,7 +61,7 @@ class Interface
   end
 
   def announce_win
-    puts "Game over. The winner was #{current_player.name}."
+    puts "Game over. You won and cracked the secret code!"
   end
 
   def announce_lose
