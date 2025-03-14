@@ -27,7 +27,8 @@ class Board
     code == current_guess
   end
 
-  def track_guess
+  def track_guess(guess)
+    current_guess = guess
     history
     hint
   end 
