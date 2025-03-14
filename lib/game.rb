@@ -9,17 +9,19 @@
 # @example Creating a new game
 #   game = Game.new
 class Game
-  require_relative 'board'
   require_relative 'configuration'
-  require_relative 'game_state'
-  require_relative 'interface'
   require_relative 'secret_code'
+  require_relative 'board'
+  require_relative 'interface'
+  require_relative 'player'
+  require_relative 'game_state'
   attr_accessor :code, :state, :board, :interface, :guesser
 
   def initialize
     @code = SecretCode.generate
     @board = Board.new(code)
     @interface = Interface.new
+    create_players
     @state = GameState.new
   end
   
@@ -39,6 +41,7 @@ class Game
   end
   
   def play_round
+    interface.welcome
     loop do
       play_turn
       interface.show_board
@@ -50,10 +53,7 @@ class Game
 
   def play_turn
     guess = interface.guess
-    until interface.valid?(guess)
-      interface.guess_again
-    end
-    board.track_guess
+    board.track_guess(guess)
     state.update_round(guess)
   end
 

@@ -8,7 +8,7 @@
 class Player
   attr_accessor :name, :role
 
-  def initialize(name, role)
+  def initialize(name = nil, role = nil)
     @name = name
     @role = role
   end
