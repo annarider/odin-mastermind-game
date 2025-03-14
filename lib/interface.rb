@@ -21,7 +21,6 @@ class Interface
       if you haven't cracked the code yet, you will see 
       a history of your guesses and hints to help you. 
     WELCOME
-    get_name
   end
 
   def guess
@@ -32,7 +31,11 @@ class Interface
     You will enter your guess in a format like this: #{SecretCode.generate.join('')}. 
     🆙 Type in your guess:
     REQUEST
-    get_guess
+    guess = get_guess
+    until valid?(guess)
+      guess_again
+    end
+    guess
   end
   
   def get_name
