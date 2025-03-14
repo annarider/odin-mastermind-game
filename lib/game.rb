@@ -20,7 +20,7 @@ class Game
     @code = SecretCode.generate
     guess = setup_interface
     setup_board(@code, guess)
-    @state = GameState.new
+    @state = GameState.new(guess)
   end
   
   def play
