@@ -18,11 +18,11 @@ class Game
 
   def initialize
     @code = SecretCode.generate
+    guess = setup_interface
+    setup_board(@code, guess)
     @state = GameState.new
-    @board = Board.new
-    @interface = Interface.new
   end
-
+  
   def play
     play_round
     while play_again?
@@ -30,8 +30,18 @@ class Game
       play_round
     end
   end
-
+  
   private
+  
+  def setup_interface
+    @interface = Interface.new
+    @interface.welcome
+    @interface.guess
+  end
+
+  def setup_board(code, guess) 
+    @board = Board.new(code, guess)
+  end
 
   def create_players
     guesser_name = interface.get_name
