@@ -15,8 +15,8 @@ class Board
   def initialize(code, guess)
     @guess_history = []
     @hint_history = []
-    @current_guess = guess
     @code = code
+    @current_guess = guess
   end
  
   def game_over?
