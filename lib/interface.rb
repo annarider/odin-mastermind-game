@@ -13,11 +13,11 @@ class Interface
 
   def welcome
     puts <<~WELCOME 
-      Welcome to the Mastermind game.
+      ⭐️ Welcome to the Mastermind game.
       You will play against the computer.
       Computer will generate a secret code.
-      You have #{Configuration::NUMBER_OF_ROUNDS} guesses
-      to try to crack the secret code. After each guess,
+      You have #{Configuration::NUMBER_OF_ROUNDS} guesses to try to 
+      crack the secret code. After each guess,
       if you haven't cracked the code yet, you will see 
       a history of your guesses and hints to help you. 
     WELCOME
@@ -25,10 +25,11 @@ class Interface
 
   def guess
     puts <<~REQUEST
-    What's your guess?
+    🔥 What's your guess?
     Guess a combination of #{Configuration::CODE_LENGTH} colors. 
     Valid colors are #{Configuration::CODE_VALUES.join('')}. 
-    You will enter your guess in a format like this: #{SecretCode.generate}. 
+    You will enter your guess in a format like this: #{SecretCode.generate.join('')}. 
+    🆙 Type in your guess:
     REQUEST
     get_guess
   end
