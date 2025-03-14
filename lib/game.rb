@@ -16,7 +16,7 @@ class Game
   require_relative 'secret_code'
   attr_accessor :code, :state, :board, :interface, :guesser
 
-  def initialize(code, guess)
+  def initialize
     @code = SecretCode.generate
     @state = GameState.new
     @board = Board.new
