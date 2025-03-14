@@ -21,6 +21,7 @@ class Interface
       if you haven't cracked the code yet, you will see 
       a history of your guesses and hints to help you. 
     WELCOME
+    get_name
   end
 
   def guess
@@ -34,6 +35,29 @@ class Interface
     get_guess
   end
   
+  def get_name
+    puts "Let's start. What's your name?"
+    gets.chomp.strip
+  end
+  
+  def show_board(board)
+    puts show_history(board), show_hint(board), show_round(board)
+  end
+  
+  def announce_win
+    puts "Game over. You won and cracked the secret code!"
+  end
+  
+  def announce_lose
+    puts 'Game over. Sorry you ran out of guesses.'
+  end
+  
+  private
+  
+  def get_guess
+    gets.chomp.upcase.delete(' ').chars
+  end
+  
   def guess_again
     puts <<~REQUEST
     Invalid guess. Guess a combination of #{Configuration::CODE_LENGTH} colors. 
@@ -42,34 +66,11 @@ class Interface
     REQUEST
     get_guess
   end
-
-  def get_name
-    puts "Let's start. What's your name?"
-    gets.chomp.strip
-  end
-
+  
   def valid?(guess)
     return false if guess.size != Configuration::CODE_LENGTH
     guess.all? { |color| Configuration::CODE_VALUES.include?(color)}
   end
-  
-  def show_board(board)
-    puts show_history(board), show_hint(board), show_round(board)
-  end
-  
-  def get_guess
-    gets.chomp.upcase.delete(' ').chars
-  end
-
-  def announce_win
-    puts "Game over. You won and cracked the secret code!"
-  end
-
-  def announce_lose
-    puts 'Game over. Sorry you ran out of guesses.'
-  end
-  
-  private
   
   def show_history(board)
     board.history.each { |guess| guess.join('')}
