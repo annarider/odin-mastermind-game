@@ -12,7 +12,7 @@ class Board
   require_relative 'configuration'
   attr_accessor :code, :guess_history, :hint_history, :current_guess
 
-  def initialize(code, guess)
+  def initialize(code = nil, guess = nil)
     @guess_history = []
     @hint_history = []
     @code = code
