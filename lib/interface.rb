@@ -60,8 +60,7 @@ class Interface
   private
   
   def get_guess
-    # gets.chomp.upcase.delete(' ').chars
-    ['B', 'P', 'C', 'Y']
+    gets.chomp.upcase.delete(' ').chars
   end
   
   def guess_again
