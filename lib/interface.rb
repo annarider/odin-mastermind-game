@@ -43,10 +43,10 @@ class Interface
     gets.chomp.strip
   end
   
-  def show_board(board)
-    print show_guesses(board)
-    puts "Here's your hint: #{show_hints(board)[0]}"
-    puts show_round(board)
+  def show_board(board, state)
+    puts "History of your guesses: #{board.guess_history}"
+    puts "Hint: Exact matches #{board.hint_history[0]}, Correct colors #{board.hint_history[1]}"
+    puts "Guess #{state.current_round} out of #{Configuration::NUMBER_OF_ROUNDS} guesses."
   end
   
   def announce_win
@@ -79,16 +79,6 @@ class Interface
   end
   
   def show_guesses(board)
-    p board.guess_history
     board.guess_history.each { |guess| puts guess.join('')}
-  end
-  
-  def show_hints(board)
-    board.hint_history.join(', ')
-  end
-
-  def show_round(board)
-    current_round = board.guess_history.size #TODO state is GameState's job
-    "Guess #{current_round} out of #{Configuration::NUMBER_OF_ROUNDS} guesses."
   end
 end
