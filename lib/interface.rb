@@ -44,8 +44,9 @@ class Interface
   end
   
   def show_board(board, state)
-    puts "History of your guesses: #{board.guess_history}"
-    puts "Hint: Exact matches #{board.hint_history[0]}, Correct colors #{board.hint_history[1]}"
+    puts "History of your guesses:"
+    puts show_guesses(board.guess_history)
+    puts "Hint: Exact matches #{board.hint_history[-1][0]}, Correct colors #{board.hint_history[-1][1]}"
     puts "Guess #{state.current_round} out of #{Configuration::NUMBER_OF_ROUNDS} guesses."
   end
   
@@ -61,7 +62,7 @@ class Interface
   
   def get_guess
     # gets.chomp.upcase.delete(' ').chars
-    ['B', 'B', 'B', 'B']
+    ['B', 'P', 'C', 'Y']
   end
   
   def guess_again
@@ -78,7 +79,7 @@ class Interface
     guess.all? { |color| Configuration::CODE_VALUES.include?(color)}
   end
   
-  def show_guesses(board)
-    board.guess_history.each { |guess| puts guess.join('')}
+  def show_guesses(guesses)
+    guesses.map { |guess| guess.join('') }.join("\n")
   end
 end
