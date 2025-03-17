@@ -45,8 +45,7 @@ class Interface
   
   def show_board(board, state)
     puts "History of your guesses:"
-    puts show_guesses(board.guess_history)
-    puts "Hint: Exact matches #{board.hint_history[-1][0]}, Correct colors #{board.hint_history[-1][1]}"
+    puts show_guesses_with_hints(board)
     puts "Guess #{state.current_round} out of #{Configuration::NUMBER_OF_ROUNDS} guesses."
   end
   
@@ -79,7 +78,12 @@ class Interface
     guess.all? { |color| Configuration::CODE_VALUES.include?(color)}
   end
   
-  def show_guesses(guesses)
-    guesses.map { |guess| guess.join('') }.join("\n")
+  def show_guesses_with_hints(board)
+    both_history = board.guess_history.zip(board.hint_history)
+    both_history.map do |guess, hint| 
+      formatted_guess = "Guess: #{guess.join('')}"
+      formatted_hint = "Hint: Exact matches #{hint[0]}, Correct colors #{hint[1]}"
+      "#{formatted_guess} - #{formatted_hint}"    
+    end
   end
 end
