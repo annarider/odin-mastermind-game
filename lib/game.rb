@@ -58,9 +58,9 @@ class Game
   end
 
   def announce_end
-    if state.check_winner
+    if state.check_winner(@board)
       interface.announce_win
-    elsif state.check_game_over
+    elsif state.check_game_over(@board)
       interface.announce_lose
     end
   end
