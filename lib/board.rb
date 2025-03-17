@@ -28,7 +28,7 @@ class Board
   end
 
   def track_guess(guess)
-    current_guess = guess
+    @current_guess = guess
     history
     hint
   end 
