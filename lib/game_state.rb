@@ -11,7 +11,7 @@ class GameState
   attr_accessor :current_round, :current_guess, :game_over, :winner
 
   def initialize(guess = nil)
-    @current_round = 1
+    @current_round = 0
     @current_guess = guess
     @game_over = false
     @winner = false
