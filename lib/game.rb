@@ -21,7 +21,7 @@ class Game
     @code = SecretCode.generate
     @board = Board.new(code)
     @interface = Interface.new
-    create_players
+    # create_players
     @state = GameState.new
   end
   
