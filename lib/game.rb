@@ -44,7 +44,7 @@ class Game
     interface.welcome
     loop do
       play_turn
-      interface.show_board
+      interface.show_board(@board)
       break if state.check_game_over
 
     end

@@ -44,7 +44,7 @@ class Interface
   end
   
   def show_board(board)
-    puts show_history(board), show_hint(board), show_round(board)
+    print show_guesses(board), show_hints(board), show_round(board)
   end
   
   def announce_win
@@ -75,12 +75,12 @@ class Interface
     guess.all? { |color| Configuration::CODE_VALUES.include?(color)}
   end
   
-  def show_history(board)
-    board.history.each { |guess| guess.join('')}
+  def show_guesses(board)
+    board.guess_history.each { |guess| guess.join('')}
   end
   
-  def show_hint(board)
-    board.hint.join(', ')
+  def show_hints(board)
+    board.hint_history.join(', ')
   end
 
   def show_round(board)
