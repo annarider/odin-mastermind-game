@@ -44,7 +44,9 @@ class Interface
   end
   
   def show_board(board)
-    print show_guesses(board), show_hints(board), show_round(board)
+    print show_guesses(board)
+    puts "Here's your hint: #{show_hints(board)[0]}"
+    puts show_round(board)
   end
   
   def announce_win
@@ -58,7 +60,8 @@ class Interface
   private
   
   def get_guess
-    gets.chomp.upcase.delete(' ').chars
+    # gets.chomp.upcase.delete(' ').chars
+    ['B', 'B', 'B', 'B']
   end
   
   def guess_again
@@ -76,7 +79,8 @@ class Interface
   end
   
   def show_guesses(board)
-    board.guess_history.each { |guess| guess.join('')}
+    p board.guess_history
+    board.guess_history.each { |guess| puts guess.join('')}
   end
   
   def show_hints(board)
