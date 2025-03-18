@@ -12,5 +12,4 @@ class Player
     @name = name
     @role = role
   end
-
 end
