@@ -5,5 +5,9 @@
 #
 require_relative 'lib/game'
 
-game = Game.new
-game.play
+loop do
+  game = Game.new
+  game.play
+  puts 'Play again? Enter y for yes (y): '
+  break unless gets.chomp.downcase == 'y'
+end

@@ -26,21 +26,6 @@ class Game
   end
   
   def play
-    play_round
-    while play_again?
-      reset
-      play_round
-    end
-  end
-  
-  private
-  
-  def create_players
-    guesser_name = interface.get_name
-    @guesser = Player.new(guesser_name)
-  end
-  
-  def play_round
     interface.welcome
     loop do
       play_turn
@@ -50,7 +35,14 @@ class Game
     end
     announce_end
   end
-
+  
+  private
+  
+  def create_players
+    guesser_name = interface.get_name
+    @guesser = Player.new(guesser_name)
+  end  
+  
   def play_turn
     guess = interface.guess
     board.track_guess(guess)
@@ -63,11 +55,6 @@ class Game
     elsif state.check_game_over(@board)
       interface.announce_lose
     end
-  end
-
-  def play_again?
-    puts 'Play again? Enter y for yes (y): '
-    gets.chomp.downcase == 'y'
   end
 
   def reset
