@@ -2,7 +2,7 @@
 
 # test_setup.rb tests the game setup.
 # This includes all steps before playing a game,
-# such as generating a code and coloring pegs. 
+# such as generating a code and coloring pegs.
 require_relative '../lib/configuration'
 require_relative '../lib/secret_code'
 
@@ -14,8 +14,7 @@ module TestSetup
   end
 
   def self.generate_code
-    code = SecretCode.generate
-    code
+    SecretCode.generate
   end
 end
 

@@ -32,7 +32,7 @@ class Interface
       🆙 Type in your guess:
     REQUEST
     guess = request_guess
-    guess_again until valid?(guess)
+    guess = guess_again until valid?(guess)
     guess
   end
 
