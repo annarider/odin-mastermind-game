@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # GameState owns the state of the game.
-# It tracks the current round, current 
+# It tracks the current round, current
 # guess, game_over, winner, conditions, etc.
 #
 # @example Creating a new state
