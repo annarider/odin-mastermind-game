@@ -24,25 +24,24 @@ class Game
     # create_players
     @state = GameState.new
   end
-  
+
   def play
     interface.welcome
     loop do
       play_turn
       interface.show_board(@board, @state)
       break if state.check_game_over(@board)
-
     end
     announce_end
   end
-  
+
   private
-  
+
   def create_players
     guesser_name = interface.get_name
     @guesser = Player.new(guesser_name)
-  end  
-  
+  end
+
   def play_turn
     guess = interface.guess
     board.track_guess(guess)
