@@ -56,8 +56,4 @@ class Game
       interface.announce_lose
     end
   end
-
-  def reset
-    @board = Board.new
-  end
 end
