@@ -38,7 +38,7 @@ class Game
   private
 
   def create_players
-    guesser_name = interface.get_name
+    guesser_name = interface.request_name
     @guesser = Player.new(guesser_name)
   end
 

@@ -25,20 +25,18 @@ class Interface
 
   def guess
     puts <<~REQUEST
-    🔥 What's your guess?
-    Guess a combination of #{Configuration::CODE_LENGTH} colors. 
-    Valid colors are #{Configuration::CODE_VALUES.join('')}. 
-    You will enter your guess in a format like this: #{SecretCode.generate.join('')}. 
-    🆙 Type in your guess:
+      🔥 What's your guess?
+      Guess a combination of #{Configuration::CODE_LENGTH} colors. 
+      Valid colors are #{Configuration::CODE_VALUES.join('')}. 
+      You will enter your guess in a format like this: #{SecretCode.generate.join('')}. 
+      🆙 Type in your guess:
     REQUEST
-    guess = get_guess
-    until valid?(guess)
-      guess_again
-    end
+    guess = request_guess
+    guess_again until valid?(guess)
     guess
   end
   
-  def get_name
+  def request_name
     puts "Let's start. What's your name?"
     gets.chomp.strip
   end
@@ -59,7 +57,7 @@ class Interface
   
   private
   
-  def get_guess
+  def request_guess
     gets.chomp.upcase.delete(' ').chars
   end
   
@@ -69,7 +67,7 @@ class Interface
     Valid colors are #{Configuration::CODE_VALUES.join('')}. 
     An example guess is #{SecretCode.generate.join('')}. Guess again. 
     REQUEST
-    get_guess
+    request_guess
   end
   
   def valid?(guess)
