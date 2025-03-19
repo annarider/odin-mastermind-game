@@ -16,22 +16,20 @@ class Interface
       ⭐️ Welcome to the Mastermind game.
       You will play against the computer.
       Computer will generate a secret code.
-      You have #{Configuration::NUMBER_OF_ROUNDS} guesses to try to#{' '}
+      You have #{Configuration::NUMBER_OF_ROUNDS} guesses to try to
       crack the secret code. After each guess,
-      if you haven't cracked the code yet, you will see#{' '}
-      a history of your guesses and hints to help you.#{' '}
+      if you haven't cracked the code yet, you will see
+      a history of your guesses and hints to help you.
     WELCOME
   end
 
   def guess
+    valid_code_examples
     puts <<~REQUEST
       🔥 What's your guess?
-      Guess a combination of #{Configuration::CODE_LENGTH} colors.#{' '}
-      Valid colors are #{Configuration::CODE_VALUES.join('')}.#{' '}
-      You will enter your guess in a format like this: #{SecretCode.generate.join('')}.#{' '}
       🆙 Type in your guess:
     REQUEST
-    guess = request_guess
+    guess = request_code
     guess = guess_again until valid?(guess)
     guess
   end
@@ -39,6 +37,20 @@ class Interface
   def request_name
     puts "Let's start. What's your name?"
     gets.chomp.strip
+  end
+
+  def request_role
+    puts "Do you want to be code maker or breaker?"
+    gets.chomp.strip
+  end
+  
+  def request_player_code
+    puts <<~REQUEST
+      🔠 You're the code maker. 
+      Please give me a code for the computer to break.
+    REQUEST
+    valid_code_examples
+    request_code
   end
 
   def show_board(board, state)
@@ -57,17 +69,21 @@ class Interface
 
   private
 
-  def request_guess
+  def request_code
     gets.chomp.upcase.delete(' ').chars
   end
 
   def guess_again
+    puts '❌ Invalid guess. Guess again.' 
+      request_code
+    end
+    
+  def valid_code_examples
     puts <<~REQUEST
-      Invalid guess. Guess a combination of #{Configuration::CODE_LENGTH} colors.#{' '}
-      Valid colors are #{Configuration::CODE_VALUES.join('')}.#{' '}
-      An example guess is #{SecretCode.generate.join('')}. Guess again.#{' '}
+      Valid colors are #{Configuration::CODE_VALUES.join('')}.
+      Guess a combination of #{Configuration::CODE_LENGTH} colors.
+      An example guess is #{SecretCode.generate.join('')}.
     REQUEST
-    request_guess
   end
 
   def valid?(guess)
