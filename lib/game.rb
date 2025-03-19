@@ -15,7 +15,7 @@ class Game
   require_relative 'interface'
   require_relative 'player'
   require_relative 'game_state'
-  attr_accessor :code, :state, :board, :interface, :guesser
+  attr_accessor :code, :state, :board, :interface, :human_player
 
   def initialize
     @code = SecretCode.generate
@@ -38,8 +38,9 @@ class Game
   private
 
   def create_players
-    guesser_name = interface.request_name
-    @guesser = Player.new(guesser_name)
+    input_name = interface.request_name
+    input_role = interface.request_role
+    @human_player = Player.new(input_name, input_role)
   end
 
   def play_turn
