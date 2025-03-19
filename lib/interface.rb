@@ -15,11 +15,6 @@ class Interface
     puts <<~WELCOME
       ⭐️ Welcome to the Mastermind game.
       You will play against the computer.
-      Computer will generate a secret code.
-      You have #{Configuration::NUMBER_OF_ROUNDS} guesses to try to
-      crack the secret code. After each guess,
-      if you haven't cracked the code yet, you will see
-      a history of your guesses and hints to help you.
     WELCOME
   end
 
@@ -40,13 +35,15 @@ class Interface
   end
 
   def request_role
-    puts "Do you want to be code maker or breaker?"
-    gets.chomp.strip
+    puts 'Do you want to be code maker or breaker?'
+    puts 'Type in maker or breaker:'
+    role = gets.chomp.upcase.strip
+    confirm_role
   end
-  
+
   def request_player_code
     puts <<~REQUEST
-      🔠 You're the code maker. 
+      🔠 You're the code maker.#{' '}
       Please give me a code for the computer to break.
     REQUEST
     valid_code_examples
@@ -69,20 +66,48 @@ class Interface
 
   private
 
+  def confirm_role(role)
+    if role == 'MAKER' || role == 'BREAKER'
+      puts "Great. You will be #{role}"
+    else
+      puts "Couldn't detect your chosen role."
+      role = %w[MAKER BREAKER].sample
+      puts "You will be #{role} for this game."
+    end
+    role  
+  end
+
+  def code_breaker_message
+    puts <<~MESSAGE
+      Computer will generate a secret code.
+      You have #{Configuration::NUMBER_OF_ROUNDS} guesses to try to
+      crack the secret code. After each guess,
+      if you haven't cracked the code yet, you will see
+      a history of your guesses and hints to help you.
+    MESSAGE
+  end
+
+  def code_maker_message
+    puts <<~MESSAGE
+      Create a code for the computer to break. 
+    MESSAGE
+    valid_code_examples
+  end
+
   def request_code
     gets.chomp.upcase.delete(' ').chars
   end
 
   def guess_again
-    puts '❌ Invalid guess. Guess again.' 
-      request_code
-    end
-    
+    puts '❌ Invalid guess. Guess again.'
+    request_code
+  end
+
   def valid_code_examples
     puts <<~REQUEST
       Valid colors are #{Configuration::CODE_VALUES.join('')}.
       Guess a combination of #{Configuration::CODE_LENGTH} colors.
-      An example guess is #{SecretCode.generate.join('')}.
+      An example code is #{SecretCode.generate.join('')}.
     REQUEST
   end
 
