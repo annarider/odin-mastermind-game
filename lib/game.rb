@@ -38,9 +38,10 @@ class Game
   private
 
   def create_players
-    input_name = interface.request_name
+    name = interface.request_name
     input_role = interface.request_role
-    @human_player = Player.new(input_name, input_role)
+    role = input_role == 'MAKER' ? :codemaker : :codebreaker
+    @human_player = Player.new(name, role)
   end
 
   def play_turn

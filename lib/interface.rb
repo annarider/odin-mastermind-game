@@ -37,8 +37,8 @@ class Interface
   def request_role
     puts 'Do you want to be code maker or breaker?'
     puts 'Type in maker or breaker:'
-    role = gets.chomp.upcase.strip
-    confirm_role
+    role = gets.chomp.downcase.strip
+    confirm_role(role)
   end
 
   def request_player_code
@@ -67,12 +67,12 @@ class Interface
   private
 
   def confirm_role(role)
-    if role == 'MAKER' || role == 'BREAKER'
-      puts "Great. You will be #{role}"
+    if role == 'maker' || role == 'breaker'
+      puts "Great. You will be the code #{role}."
     else
       puts "Couldn't detect your chosen role."
-      role = %w[MAKER BREAKER].sample
-      puts "You will be #{role} for this game."
+      role = %w[maker breaker].sample
+      puts "You will be the code #{role} for this game."
     end
     role  
   end
