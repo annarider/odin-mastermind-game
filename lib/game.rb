@@ -52,7 +52,11 @@ class Game
   end
 
   def play_turn
-    guess = interface.guess
+    if @human_player.role == :codemaker
+      computer_guess
+    else
+      guess = interface.guess
+    end
     board.track_guess(guess)
     state.update_round(guess)
   end
