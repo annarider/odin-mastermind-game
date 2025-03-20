@@ -70,7 +70,7 @@ class Interface
     if role == 'maker' || role == 'breaker'
       puts "Great. You will be the code #{role}."
     else
-      puts "Couldn't detect your chosen role."
+      puts "Sorry, I couldn't detect your chosen role. I'll randomly assign your role."
       role = %w[maker breaker].sample
       puts "You will be the code #{role} for this game."
     end

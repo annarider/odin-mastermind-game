@@ -18,13 +18,13 @@ class Game
   attr_accessor :code, :state, :board, :interface, :human_player
 
   def initialize
-    @code = SecretCode.generate
-    @board = Board.new(code)
     @interface = Interface.new
     create_players
+    @code = create_code
+    @board = Board.new(code)
     @state = GameState.new
   end
-
+  
   def play
     interface.welcome
     loop do
@@ -34,14 +34,21 @@ class Game
     end
     announce_end
   end
-
+  
   private
-
+  
   def create_players
     name = interface.request_name
     input_role = interface.request_role
-    role = input_role == 'MAKER' ? :codemaker : :codebreaker
+    role = input_role == 'maker' ? :codemaker : :codebreaker
     @human_player = Player.new(name, role)
+    p human_player
+  end
+  
+  def create_code
+    return interface.request_player_code if @human_player.role == :codemaker 
+
+    SecretCode.generate
   end
 
   def play_turn
