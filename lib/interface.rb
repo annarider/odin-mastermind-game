@@ -24,9 +24,7 @@ class Interface
       🔥 What's your guess?
       🆙 Type in your guess:
     REQUEST
-    guess = request_code
-    guess = guess_again until valid?(guess)
-    guess
+    request_code
   end
 
   def request_name
@@ -95,11 +93,13 @@ class Interface
   end
 
   def request_code
-    gets.chomp.upcase.delete(' ').chars
+    code = gets.chomp.upcase.delete(' ').chars
+    code = code_again until valid?(code)
+    code
   end
 
-  def guess_again
-    puts '❌ Invalid guess. Guess again.'
+  def code_again
+    puts '❌ Invalid code. Please provide your code again.'
     request_code
   end
 
@@ -109,12 +109,12 @@ class Interface
       Guess a combination of #{Configuration::CODE_LENGTH} colors.
       An example code is #{SecretCode.generate.join('')}.
     REQUEST
-  end
+  end 
 
-  def valid?(guess)
-    return false if guess.size != Configuration::CODE_LENGTH
+  def valid?(code)
+    return false if code.size != Configuration::CODE_LENGTH
 
-    guess.all? { |color| Configuration::CODE_VALUES.include?(color) }
+    code.all? { |color| Configuration::CODE_VALUES.include?(color) }
   end
 
   def show_guesses_with_hints(board)
