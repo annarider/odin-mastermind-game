@@ -89,5 +89,26 @@ Configurations class
 - class methods:
 -- declare variables above
 
+ComputerPlayer class
+- purpose: handles the computer player as the guesser
+- instance variables: 
+-- track guess 
+- instance methods: 
+-- requests a guess (reuse the SecretCode class)
+-- guesses based trying each letter first
+--- try the first letter of the valid code colors, e.g. RRRR
+--- based on feedback, if feedback shows 0,0
+      move to the next color e.g. YYYY
+    else incorporate the feedback, 
+      replace the number of colors in the next guess, 
+      if feedback is 0, 1, e.g. BYYY
+    the aim is to get to a feedback of 4
+--- once you have feedback that adds up to 4, 
+    use a bubble sort to move the colors into different
+    positions until you get the right combination
+
+-- avoid repeating guesses by observing the history
+-- uses hints to track correct letters 
+
  main.rb
 - instantiate new Game object
