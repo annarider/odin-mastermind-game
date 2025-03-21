@@ -14,8 +14,9 @@ class Game
   require_relative 'board'
   require_relative 'interface'
   require_relative 'player'
+  require_relative 'computer'
   require_relative 'game_state'
-  attr_accessor :code, :state, :board, :interface, :human_player
+  attr_accessor :code, :state, :board, :interface, :human_player, :computer_player
 
   def initialize
     @interface = Interface.new
@@ -42,7 +43,7 @@ class Game
     input_role = interface.request_role
     role = input_role == 'maker' ? :codemaker : :codebreaker
     @human_player = Player.new(name, role)
-    p human_player
+    @computer_player = Computer.new
   end
   
   def create_code
@@ -53,7 +54,7 @@ class Game
 
   def play_turn
     if @human_player.role == :codemaker
-      computer_guess
+      @computer_player.first_guess
     else
       guess = interface.guess
     end
