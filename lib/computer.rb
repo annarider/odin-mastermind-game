@@ -15,10 +15,8 @@ class Computer
     @remainder_code = Configuration::CODE_VALUES
   end
 
-  def guess(board)
-    remainder_code.each do |color|
-      color * Configuration::CODE_LENGTH
-    end
-    p board
+  def guess(guess_history, hint_history)
+    guess = remainder_code[0] * Configuration::CODE_LENGTH
+    guess.chars
   end
 end

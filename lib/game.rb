@@ -39,22 +39,25 @@ class Game
   private
   
   def create_players
-    name = interface.request_name
-    input_role = interface.request_role
+    # name = interface.request_name
+    name = 'Anna'
+    # input_role = interface.request_role
+    input_role = 'maker'
     role = input_role == 'maker' ? :codemaker : :codebreaker
     @human_player = Player.new(name, role)
     @computer_player = Computer.new
   end
   
   def create_code
-    return interface.request_player_code if @human_player.role == :codemaker 
+    # return interface.request_player_code if @human_player.role == :codemaker 
+    return 'BBBB'.chars
 
     SecretCode.generate
   end
 
   def play_turn
     if @human_player.role == :codemaker
-      guess = @computer_player.guess(board)
+      guess = @computer_player.guess(@board.guess_history, @board.hint_history)
     else
       guess = interface.guess
     end
