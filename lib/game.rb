@@ -39,9 +39,9 @@ class Game
   private
   
   def create_players
-    # name = interface.request_name
+    # name = interface.request_name # TODO: Remove
     name = 'Anna'
-    # input_role = interface.request_role
+    # input_role = interface.request_role # TODO: Remove
     input_role = 'maker'
     role = input_role == 'maker' ? :codemaker : :codebreaker
     @human_player = Player.new(name, role)
@@ -50,7 +50,7 @@ class Game
   
   def create_code
     # return interface.request_player_code if @human_player.role == :codemaker 
-    return 'BBBB'.chars
+    return 'BBBB'.chars # TOOO: Remove
 
     SecretCode.generate
   end
