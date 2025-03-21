@@ -16,6 +16,8 @@ class Computer
   end
 
   def guess(guess_history, hint_history)
+    p hint_history 
+    p hint_history[-1].sum unless hint_history.empty?
     guess = remainder_code[0] * Configuration::CODE_LENGTH
     guess.chars
   end
