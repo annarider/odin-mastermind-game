@@ -41,7 +41,7 @@ class Interface
 
   def request_player_code
     puts <<~REQUEST
-      🔠 You're the code maker.#{' '}
+      🔠 You're the code maker.
       Please give me a code for the computer to break.
     REQUEST
     valid_code_examples
@@ -49,7 +49,7 @@ class Interface
   end
 
   def show_board(board, state)
-    puts 'History of your guesses:'
+    puts 'History of guesses:'
     puts show_guesses_with_hints(board)
     puts "Guess #{state.current_round} out of #{Configuration::NUMBER_OF_ROUNDS} guesses."
   end
