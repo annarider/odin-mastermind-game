@@ -14,6 +14,6 @@ class Computer
   end
 
   def first_guess
-    p Configuration::CODE_VALUES * Configuration::CODE_LENGTH
+    p Configuration::CODE_VALUES[0] * Configuration::CODE_LENGTH
   end
 end
