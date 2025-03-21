@@ -9,11 +9,16 @@
 #   computer = Computer.new
 class Computer
   require_relative 'configuration'
+  attr_accessor :remainder_code
   
   def initialize
+    @remainder_code = Configuration::CODE_VALUES
   end
 
-  def first_guess
-    p Configuration::CODE_VALUES[0] * Configuration::CODE_LENGTH
+  def guess(board)
+    remainder_code.each do |color|
+      color * Configuration::CODE_LENGTH
+    end
+    p board
   end
 end

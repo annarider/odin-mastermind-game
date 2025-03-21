@@ -54,7 +54,7 @@ class Game
 
   def play_turn
     if @human_player.role == :codemaker
-      @computer_player.first_guess
+      guess = @computer_player.guess(board)
     else
       guess = interface.guess
     end
