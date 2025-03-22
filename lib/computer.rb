@@ -9,16 +9,22 @@
 #   computer = Computer.new
 class Computer
   require_relative 'configuration'
-  attr_accessor :remainder_code
+  attr_accessor :all_codes, :colors, :count_guess
   
   def initialize
-    @remainder_code = Configuration::CODE_VALUES
+    @colors = Configuration::CODE_VALUES
+    @all_codes = @colors.repeated_permutation(Configuration::CODE_LENGTH).to_a
   end
 
   def guess(guess_history, hint_history)
     p hint_history 
     p hint_history[-1].sum unless hint_history.empty?
-    guess = remainder_code[0] * Configuration::CODE_LENGTH
+    p all_codes.size
+    p all_codes
+    guess = colors[0] * Configuration::CODE_LENGTH
     guess.chars
   end
+
+  private
+
 end
