@@ -34,11 +34,14 @@ class Computer
   def analyze_feedback(hints)
     possible_codes.shift
     exact_match, color_match = hints[-1][0], hints[-1][1]
-    return first_guess if exact_match == 0 && color_match == 0
-      
-    elements_to_replace = code_length - exact_match
-    last_guess.pop(elements_to_replace)
-    elements_to_replace.times { last_guess.push(possible_codes[0]) }
+    if exact_match == 0 && color_match == 0
+      @last_guess = first_guess
+    elsif exact_match > 0 && color_match == 0
+      elements_to_replace = code_length - exact_match
+      last_guess.pop(elements_to_replace)
+      elements_to_replace.times { last_guess.push(possible_codes[0]) }
+    end
+    last_guess
   end
 
 end
