@@ -50,7 +50,7 @@ class Game
   
   def create_code
     # return interface.request_player_code if @human_player.role == :codemaker 
-    return 'BBBB'.chars # TOOO: Remove
+    return 'BBYY'.chars # TOOO: Remove
 
     SecretCode.generate
   end
