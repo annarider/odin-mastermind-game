@@ -9,7 +9,7 @@
       "type": "rdbg",
       "name": "Debug current file with rdbg",
       "request": "launch",
-      "script": "${file}",
+      "script": "${workspaceFolder}/main.rb",
       "args": [],
       "askParameters": true
     },
