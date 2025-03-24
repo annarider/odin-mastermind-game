@@ -21,8 +21,7 @@ class Computer
   def guess(guess_history, hint_history)
     return last_guess if hint_history.empty?
 
-    guess = analyze_feedback(hint_history)
-    guess
+    analyze_feedback(hint_history)
   end
 
   private
@@ -36,12 +35,15 @@ class Computer
     exact_match, color_match = hints[-1][0], hints[-1][1]
     if exact_match == 0 && color_match == 0
       @last_guess = first_guess
-    elsif exact_match > 0 && color_match == 0
-      elements_to_replace = code_length - exact_match
-      last_guess.pop(elements_to_replace)
-      elements_to_replace.times { last_guess.push(possible_codes[0]) }
+    else
+      next_guess(exact_match, color_match) 
     end
     last_guess
   end
-
+  
+  def next_guess(exact_match, color_match)
+    elements_to_replace = code_length - exact_match
+    last_guess.pop(elements_to_replace)
+    elements_to_replace.times { last_guess.push(possible_codes[0]) }
+  end
 end
