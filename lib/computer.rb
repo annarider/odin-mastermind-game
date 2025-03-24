@@ -33,10 +33,10 @@ class Computer
   end
 
   def analyze_feedback(hints)
-    possible_codes.shift
+    deleted_color = possible_codes.shift
     exact_match, color_match = hints[-1][0], hints[-1][1]
     if exact_match == 0 && color_match == 0
-      remove_code
+      remove_all_color(deleted_color)
       @last_guess = first_guess
     else
       next_guess(exact_match, color_match) 
@@ -54,5 +54,9 @@ class Computer
 
   def random_pick
     all_codes.sample
+  end
+
+  def remove_all_colors(color)
+    all_codes.delete_if { |code| code.include?(color) }
   end
 end
