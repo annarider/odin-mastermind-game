@@ -9,13 +9,15 @@
 #   computer = Computer.new
 class Computer
   require_relative 'configuration'
-  attr_accessor :code_length, :all_codes, :possible_codes, :last_guess
+  attr_accessor :code_length, :all_codes, :possible_codes, 
+    :last_guess, :correct_codes
   
   def initialize
     @code_length = Configuration::CODE_LENGTH
     @possible_codes = Configuration::CODE_VALUES.dup
     @all_codes = @possible_codes.repeated_permutation(code_length).to_a
     @last_guess = first_guess
+    @correct_codes = nil
   end
 
   def guess(guess_history, hint_history)
@@ -42,6 +44,7 @@ class Computer
   end
   
   def next_guess(exact_match, color_match)
+    if exact_match
     elements_to_replace = code_length - exact_match
     last_guess.pop(elements_to_replace)
     elements_to_replace.times { last_guess.push(possible_codes[0]) }
