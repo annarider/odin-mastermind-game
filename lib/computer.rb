@@ -21,7 +21,7 @@ class Computer
     @position = 0
   end
 
-  def guess(guess_history, hint_history)
+  def guess(hint_history)
     return last_guess if hint_history.empty?
 
     analyze_feedback(hint_history)
@@ -46,11 +46,11 @@ class Computer
   end
   
   def next_guess(color, exact_match, color_match)
-    number_feedback = exact_match + color_match
-    @correct_codes.push([color, number_feedback])
-    return sort if number_feedback == 4
+    feedback_sum = exact_match + color_match
+    @correct_codes.push([color, feedback_sum])
+    return sort if feedback_sum == 4
     
-    replace_code_elements(color, number_feedback)
+    replace_code_elements(color, feedback_sum)
   end
     
   def random_pick
@@ -67,12 +67,14 @@ class Computer
     last_guess
   end
   
-  def replace_code_elements(color, number)
+  def replace_code_elements(color, feedback_sum)
     remove_codes(color)
 
-    elements_to_replace = code_length - number
-    last_guess.pop(elements_to_replace)
-    elements_to_replace.times { last_guess.push(possible_codes[0]) }
-    last_guess
+    new_guess = last_guess.dup
+    new_guess.each_with_index do |_c, index|
+      new_guess[index] = possible_codes[0] if index < (code_length - feedback_sum)
+      index += 1
+    end
+    new_guess
   end
 end
