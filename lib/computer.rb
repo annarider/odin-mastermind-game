@@ -46,13 +46,13 @@ class Computer
   
   def next_guess(exact_match, color_match)
     if (exact_match + color_match) == 4
-      random_pick(last_guess)
+      random_pick
     elements_to_replace = code_length - exact_match
     last_guess.pop(elements_to_replace)
     elements_to_replace.times { last_guess.push(possible_codes[0]) }
   end
 
-  def random_pick(guess)
-    guess # TODO
+  def random_pick
+    all_codes.sample
   end
 end
