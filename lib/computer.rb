@@ -80,10 +80,12 @@ class Computer
   
   def replace_code_elements(color, feedback_sum)
     new_guess = last_guess.dup
-    new_guess.each_with_index do |_c, index|
-      new_guess[index] = possible_codes[0] if index < (code_length - feedback_sum)
-      index += 1
+    (code_length - feedback_sum).times do |i|
+      p i
+      new_guess[i] = possible_codes[0]
     end
+    puts "Debug - new_guess length: #{new_guess.length}, content: #{new_guess.join}"
+    p new_guess
     new_guess
   end
 end
