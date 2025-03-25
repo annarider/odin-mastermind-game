@@ -10,14 +10,13 @@
 class Computer
   require_relative 'configuration'
   attr_accessor :code_length, :all_codes, :possible_codes, 
-    :last_guess, :correct_codes, :position
+    :last_guess
   
   def initialize
     @code_length = Configuration::CODE_LENGTH
     @possible_codes = Configuration::CODE_VALUES.dup
     @all_codes = @possible_codes.repeated_permutation(code_length).to_a
     @last_guess = first_guess
-    @correct_codes = []
     @position = 0
   end
 
@@ -47,24 +46,32 @@ class Computer
   
   def next_guess(color, exact_match, color_match)
     feedback_sum = exact_match + color_match
-    @correct_codes.push([color, feedback_sum])
     return sort if feedback_sum == 4
-    
+
     replace_code_elements(color, feedback_sum)
-  end
-    
-  def random_pick
-    all_codes.shuffle
-  end
-  
-  def remove_codes(color)
-    all_codes.delete_if { |code| code.include?(color) }
   end
   
   def sort
-    last_guess[position], last_guess[position + 1] = last_guess[position + 1], last_guess[position]
-    @position += 1
-    last_guess
+    all_codes.delete(last_guess)
+    correct_count = last_guess.reduce(Hash.new(0)) do |count, color| 
+      count[color] += 1
+      count
+    end
+    all_codes = remove_codes(correct_count)
+    random_pick
+  end
+  
+  def random_pick
+    all_codes.sample
+  end
+  
+  def remove_codes(correct_count)
+    relevant_codes = all_codes.select do |code| 
+      code_counts = Hash.new(0)
+      code.each { |color| code_counts[color] += 1 }
+      code_counts == correct_count 
+    end
+    relevant_codes
   end
   
   def replace_code_elements(color, feedback_sum)
