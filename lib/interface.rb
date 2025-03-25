@@ -55,11 +55,11 @@ class Interface
   end
 
   def announce_win
-    puts 'Game over. You won and cracked the secret code!'
+    puts "Game over. It's a win! Codecracker cracked the secret code!"
   end
 
   def announce_lose
-    puts 'Game over. Sorry you ran out of guesses.'
+    puts "Game over. Sorry we're ran out of guesses."
   end
 
   private

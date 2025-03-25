@@ -49,8 +49,7 @@ class Game
   end
   
   def create_code
-    # return interface.request_player_code if @human_player.role == :codemaker 
-    return 'BPYC'.chars # TOOO: Remove
+    return interface.request_player_code if @human_player.role == :codemaker 
 
     SecretCode.generate
   end
