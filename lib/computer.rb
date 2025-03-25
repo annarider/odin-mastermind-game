@@ -36,7 +36,7 @@ class Computer
     deleted_color = possible_codes.shift
     exact_match, color_match = hints[-1][0], hints[-1][1]
     if exact_match == 0 && color_match == 0
-      remove_codes(deleted_color)
+      delete_all_instances(deleted_color)
       @last_guess = first_guess
     else
       @last_guess = next_guess(deleted_color, exact_match, color_match) 
@@ -57,7 +57,7 @@ class Computer
       count[color] += 1
       count
     end
-    all_codes = remove_codes(correct_count)
+    remove_codes(correct_count)
     random_pick
   end
   
@@ -66,17 +66,19 @@ class Computer
   end
   
   def remove_codes(correct_count)
-    relevant_codes = all_codes.select do |code| 
+    @all_codes = @all_codes.select do |code| 
       code_counts = Hash.new(0)
       code.each { |color| code_counts[color] += 1 }
       code_counts == correct_count 
     end
-    relevant_codes
+    @all_codes
+  end
+
+  def delete_all_instances(color)
+    @all_codes.delete_if { |code| code.include?(color) }
   end
   
   def replace_code_elements(color, feedback_sum)
-    remove_codes(color)
-
     new_guess = last_guess.dup
     new_guess.each_with_index do |_c, index|
       new_guess[index] = possible_codes[0] if index < (code_length - feedback_sum)
