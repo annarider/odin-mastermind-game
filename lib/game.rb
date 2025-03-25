@@ -39,10 +39,8 @@ class Game
   private
   
   def create_players
-    # name = interface.request_name # TODO: Remove
-    name = 'Anna'
-    # input_role = interface.request_role # TODO: Remove
-    input_role = 'maker'
+    name = interface.request_name
+    input_role = interface.request_role
     role = input_role == 'maker' ? :codemaker : :codebreaker
     @human_player = Player.new(name, role)
     @computer_player = Computer.new
