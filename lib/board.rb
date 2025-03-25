@@ -58,8 +58,7 @@ class Board
   end
 
   def find_color_match(exact_matches)
-    remainder_code = code - exact_matches
-    remainder_guess = current_guess - exact_matches
+    remainder_code, remainder_guess = remove_exact_matches(exact_matches)
     matches = []
     remainder_guess.each do |color|
       if remainder_code.include?(color)
@@ -68,5 +67,18 @@ class Board
       end
     end
     matches
+  end
+
+  def remove_exact_matches(exact_matches)
+    remaining_code = code.dup
+    remaining_guess = current_guess.dup
+
+    exact_matches.each do |color| 
+      code_index = remaining_code.index(color)
+      remaining_code.delete_at(code_index) if code_index
+      guess_index = remaining_guess.index(color)
+      remaining_guess.delete_at(guess_index) if guess_index
+    end
+    [remaining_code, remaining_guess]
   end
 end
