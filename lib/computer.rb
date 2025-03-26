@@ -47,7 +47,7 @@ class Computer
 
   def next_guess(color, exact_match, color_match)
     feedback_sum = exact_match + color_match
-    return sort if feedback_sum == 4
+    return sort if feedback_sum == code_length
 
     replace_code_elements(feedback_sum)
   end
