@@ -73,7 +73,7 @@ class Board
     remaining_code = code.dup
     remaining_guess = current_guess.dup
 
-    exact_matches.each do |color| 
+    exact_matches.each do |color|
       code_index = remaining_code.index(color)
       remaining_code.delete_at(code_index) if code_index
       guess_index = remaining_guess.index(color)

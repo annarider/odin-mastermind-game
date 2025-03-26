@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # test/guess.rb
 require_relative '../lib/configuration'
 
@@ -5,8 +7,8 @@ require_relative '../lib/configuration'
 class SecretCode
   class << self
     # Store the original method
-    alias_method :original_generate, :generate if method_defined?(:generate)
-    
+    alias original_generate generate if method_defined?(:generate)
+
     # Override with our fixed code method
     def generate
       # Fixed test code - you can change this to whatever you want
@@ -15,4 +17,4 @@ class SecretCode
   end
 end
 
-puts "DEBUG: Secret code will be: RGBY"
+puts 'DEBUG: Secret code will be: RGBY'

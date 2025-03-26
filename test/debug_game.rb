@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # test/debug_game.rb
 # First load the original code
 require_relative '../lib/secret_code'
