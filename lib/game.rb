@@ -25,7 +25,7 @@ class Game
     @board = Board.new(code)
     @state = GameState.new
   end
-  
+
   def play
     interface.welcome
     loop do
@@ -35,9 +35,9 @@ class Game
     end
     announce_end
   end
-  
+
   private
-  
+
   def create_players
     name = interface.request_name
     input_role = interface.request_role
@@ -45,19 +45,19 @@ class Game
     @human_player = Player.new(name, role)
     @computer_player = Computer.new
   end
-  
+
   def create_code
-    return interface.request_player_code if @human_player.role == :codemaker 
+    return interface.request_player_code if @human_player.role == :codemaker
 
     SecretCode.generate
   end
 
   def play_turn
-    if @human_player.role == :codemaker
-      guess = @computer_player.guess(@board.hint_history.dup)
-    else
-      guess = interface.guess
-    end
+    guess = if @human_player.role == :codemaker
+              @computer_player.guess(@board.hint_history.dup)
+            else
+              interface.guess
+            end
     board.track_guess(guess)
     state.update_round(guess)
   end
