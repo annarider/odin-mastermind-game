@@ -49,7 +49,7 @@ class Computer
     feedback_sum = exact_match + color_match
     return sort if feedback_sum == 4
 
-    replace_code_elements(color, feedback_sum)
+    replace_code_elements(feedback_sum)
   end
 
   def sort
@@ -81,11 +81,8 @@ class Computer
   def replace_code_elements(feedback_sum)
     new_guess = last_guess.dup
     (code_length - feedback_sum).times do |i|
-      p i
       new_guess[i] = possible_codes[0]
     end
-    puts "Debug - new_guess length: #{new_guess.length}, content: #{new_guess.join}"
-    p new_guess
     new_guess
   end
 end
