@@ -65,14 +65,14 @@ class Interface
   private
 
   def confirm_role(role)
-    if role == 'maker' || role == 'breaker'
+    if %w[maker breaker].include?(role)
       puts "Great. You will be the code #{role}."
     else
       puts "Sorry, I couldn't detect your chosen role. I'll randomly assign your role."
       role = %w[maker breaker].sample
       puts "You will be the code #{role} for this game."
     end
-    role  
+    role
   end
 
   def code_breaker_message
@@ -87,7 +87,7 @@ class Interface
 
   def code_maker_message
     puts <<~MESSAGE
-      Create a code for the computer to break. 
+      Create a code for the computer to break.#{' '}
     MESSAGE
     valid_code_examples
   end
@@ -109,7 +109,7 @@ class Interface
       Guess a combination of #{Configuration::CODE_LENGTH} colors.
       An example code is #{SecretCode.generate.join('')}.
     REQUEST
-  end 
+  end
 
   def valid?(code)
     return false if code.size != Configuration::CODE_LENGTH
